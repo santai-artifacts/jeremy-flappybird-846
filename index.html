@@ -149,9 +149,11 @@
             width: 30,
             height: 30,
             velocity: 0,
-            gravity: 0.6,
-            jumpPower: -12,
-            maxVelocity: 10,
+            gravity: 0.35,
+            jumpPower: -9,
+            maxVelocity: 8,
+            wingAngle: 0,
+            flappingTime: 0,
 
             update() {
                 this.velocity += this.gravity;
@@ -159,13 +161,25 @@
                     this.velocity = this.maxVelocity;
                 }
                 this.y += this.velocity;
+
+                // Update wing animation
+                this.flappingTime--;
+                if (this.flappingTime > 0) {
+                    this.wingAngle = Math.sin(Date.now() / 50) * 30;
+                } else {
+                    this.wingAngle = Math.sin(Date.now() / 200) * 15;
+                }
             },
 
             flap() {
                 this.velocity = this.jumpPower;
+                this.flappingTime = 10;
             },
 
             draw() {
+                ctx.save();
+
+                // Body
                 ctx.fillStyle = '#FFD700';
                 ctx.beginPath();
                 ctx.ellipse(this.x + this.width / 2, this.y + this.height / 2, this.width / 2, this.height / 2, 0, 0, Math.PI * 2);
@@ -173,6 +187,32 @@
                 ctx.strokeStyle = '#FFA500';
                 ctx.lineWidth = 2;
                 ctx.stroke();
+
+                // Left wing
+                ctx.save();
+                ctx.translate(this.x + 12, this.y + 15);
+                ctx.rotate((this.wingAngle * Math.PI) / 180);
+                ctx.fillStyle = '#FF9500';
+                ctx.beginPath();
+                ctx.ellipse(0, 0, 12, 8, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.strokeStyle = '#FF7000';
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+                ctx.restore();
+
+                // Right wing
+                ctx.save();
+                ctx.translate(this.x + 28, this.y + 15);
+                ctx.rotate((-this.wingAngle * Math.PI) / 180);
+                ctx.fillStyle = '#FF9500';
+                ctx.beginPath();
+                ctx.ellipse(0, 0, 12, 8, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.strokeStyle = '#FF7000';
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+                ctx.restore();
 
                 // Eye
                 ctx.fillStyle = 'white';
@@ -193,13 +233,15 @@
                 ctx.lineTo(this.x + 38, this.y + 18);
                 ctx.closePath();
                 ctx.fill();
+
+                ctx.restore();
             }
         };
 
         // Pipes array
         let pipes = [];
         const pipeWidth = 60;
-        const pipeGap = 120;
+        const pipeGap = 160;
 
         function createPipe() {
             const minHeight = 50;
@@ -316,7 +358,7 @@
 
             if (gameRunning) {
                 pipeSpawnCounter++;
-                if (pipeSpawnCounter > 90) {
+                if (pipeSpawnCounter > 120) {
                     createPipe();
                     pipeSpawnCounter = 0;
                 }
