@@ -179,10 +179,10 @@
             draw() {
                 ctx.save();
 
-                // Body
+                // Main body (vertical oval)
                 ctx.fillStyle = '#FFD700';
                 ctx.beginPath();
-                ctx.ellipse(this.x + this.width / 2, this.y + this.height / 2, this.width / 2, this.height / 2, 0, 0, Math.PI * 2);
+                ctx.ellipse(this.x + 15, this.y + 18, 10, 15, 0, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.strokeStyle = '#FFA500';
                 ctx.lineWidth = 2;
@@ -190,11 +190,11 @@
 
                 // Left wing
                 ctx.save();
-                ctx.translate(this.x + 12, this.y + 15);
+                ctx.translate(this.x + 8, this.y + 16);
                 ctx.rotate((this.wingAngle * Math.PI) / 180);
                 ctx.fillStyle = '#FF9500';
                 ctx.beginPath();
-                ctx.ellipse(0, 0, 12, 8, 0, 0, Math.PI * 2);
+                ctx.ellipse(0, 0, 14, 10, 0, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.strokeStyle = '#FF7000';
                 ctx.lineWidth = 1.5;
@@ -203,34 +203,43 @@
 
                 // Right wing
                 ctx.save();
-                ctx.translate(this.x + 28, this.y + 15);
+                ctx.translate(this.x + 22, this.y + 16);
                 ctx.rotate((-this.wingAngle * Math.PI) / 180);
                 ctx.fillStyle = '#FF9500';
                 ctx.beginPath();
-                ctx.ellipse(0, 0, 12, 8, 0, 0, Math.PI * 2);
+                ctx.ellipse(0, 0, 14, 10, 0, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.strokeStyle = '#FF7000';
                 ctx.lineWidth = 1.5;
                 ctx.stroke();
                 ctx.restore();
 
+                // Head
+                ctx.fillStyle = '#FFD700';
+                ctx.beginPath();
+                ctx.arc(this.x + 15, this.y + 8, 8, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.strokeStyle = '#FFA500';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
                 // Eye
                 ctx.fillStyle = 'white';
                 ctx.beginPath();
-                ctx.arc(this.x + 20, this.y + 10, 5, 0, Math.PI * 2);
+                ctx.arc(this.x + 18, this.y + 6, 4, 0, Math.PI * 2);
                 ctx.fill();
 
                 ctx.fillStyle = 'black';
                 ctx.beginPath();
-                ctx.arc(this.x + 21, this.y + 10, 3, 0, Math.PI * 2);
+                ctx.arc(this.x + 19, this.y + 6, 2, 0, Math.PI * 2);
                 ctx.fill();
 
                 // Beak
                 ctx.fillStyle = '#FFA500';
                 ctx.beginPath();
-                ctx.moveTo(this.x + 28, this.y + 15);
-                ctx.lineTo(this.x + 38, this.y + 12);
-                ctx.lineTo(this.x + 38, this.y + 18);
+                ctx.moveTo(this.x + 23, this.y + 8);
+                ctx.lineTo(this.x + 32, this.y + 6);
+                ctx.lineTo(this.x + 32, this.y + 10);
                 ctx.closePath();
                 ctx.fill();
 
