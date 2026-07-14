@@ -180,11 +180,11 @@
                 ctx.save();
 
                 // Main body (vertical oval)
-                ctx.fillStyle = '#FFD700';
+                ctx.fillStyle = '#2ECC71';
                 ctx.beginPath();
                 ctx.ellipse(this.x + 15, this.y + 18, 10, 15, 0, 0, Math.PI * 2);
                 ctx.fill();
-                ctx.strokeStyle = '#FFA500';
+                ctx.strokeStyle = '#27AE60';
                 ctx.lineWidth = 2;
                 ctx.stroke();
 
@@ -192,11 +192,11 @@
                 ctx.save();
                 ctx.translate(this.x + 8, this.y + 16);
                 ctx.rotate((this.wingAngle * Math.PI) / 180);
-                ctx.fillStyle = '#FF9500';
+                ctx.fillStyle = '#2ECC71';
                 ctx.beginPath();
                 ctx.ellipse(0, 0, 14, 10, 0, 0, Math.PI * 2);
                 ctx.fill();
-                ctx.strokeStyle = '#FF7000';
+                ctx.strokeStyle = '#27AE60';
                 ctx.lineWidth = 1.5;
                 ctx.stroke();
                 ctx.restore();
@@ -205,21 +205,21 @@
                 ctx.save();
                 ctx.translate(this.x + 22, this.y + 16);
                 ctx.rotate((-this.wingAngle * Math.PI) / 180);
-                ctx.fillStyle = '#FF9500';
+                ctx.fillStyle = '#2ECC71';
                 ctx.beginPath();
                 ctx.ellipse(0, 0, 14, 10, 0, 0, Math.PI * 2);
                 ctx.fill();
-                ctx.strokeStyle = '#FF7000';
+                ctx.strokeStyle = '#27AE60';
                 ctx.lineWidth = 1.5;
                 ctx.stroke();
                 ctx.restore();
 
                 // Head
-                ctx.fillStyle = '#FFD700';
+                ctx.fillStyle = '#2ECC71';
                 ctx.beginPath();
                 ctx.arc(this.x + 15, this.y + 8, 8, 0, Math.PI * 2);
                 ctx.fill();
-                ctx.strokeStyle = '#FFA500';
+                ctx.strokeStyle = '#27AE60';
                 ctx.lineWidth = 2;
                 ctx.stroke();
 
